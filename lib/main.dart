@@ -59,12 +59,13 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
+            Text(
               'Your IP address is:',
+              style: Theme.of(context).textTheme.bodyLarge,
             ),
             Text(
               currentIp,
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 18),
