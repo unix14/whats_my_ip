@@ -3,18 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyIPApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MyIPApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'What\'s My IP?',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: const ColorScheme.highContrastDark(brightness: Brightness.light),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'What\'s My IP?'),
@@ -49,6 +48,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //todo add ipv4\v6 distinction
+    //todo add settings wit simple attributions to dev
+    //todo add simple interactions with Black Launcher app
     //todo add ads here
     return Scaffold(
       appBar: AppBar(
