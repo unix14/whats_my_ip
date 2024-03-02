@@ -17,6 +17,7 @@ class MyIPApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'What\'s My IP?',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: const ColorScheme.dark(background: Colors.black),
         fontFamily: 'Preahvihear',
