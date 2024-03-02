@@ -41,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _calculateIp() async {
-    var ipv4 = await Ipify.ipv4();
+    var ipv4 = await Ipify.ipv64();
     setState(() {
       currentIp = ipv4;
     });
