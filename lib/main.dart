@@ -60,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    //todo add wifi\4g ditinction icon
+    //todo add wifi\4g distinction icon
     //todo add ipv4\v6 distinction
     //todo add simple interactions with Black Launcher app
     return Scaffold(
