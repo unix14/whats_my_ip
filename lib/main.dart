@@ -14,6 +14,7 @@ class MyIPApp extends StatelessWidget {
       title: 'What\'s My IP?',
       theme: ThemeData(
         colorScheme: const ColorScheme.highContrastDark(brightness: Brightness.light),
+        fontFamily: 'Preahvihear',
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'What\'s My IP?'),
