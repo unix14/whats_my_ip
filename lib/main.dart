@@ -3,7 +3,10 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:whats_my_ip/ad_manager.dart';
+
+import 'models/app_bar_menu_item.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -60,6 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //todo add open ip tools app button
     //todo add wifi\4g distinction icon
     //todo add ipv4\v6 distinction
     //todo add simple interactions with Black Launcher app
@@ -67,8 +71,31 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         title: Text(widget.title),
-        actions: const [
-          //todo add settings with simple attributions to dev
+        actions: [
+          PopupMenuButton<AppBarMenuItem>(
+            onSelected: onMenuItemClicked,
+            itemBuilder: (BuildContext context) {
+              return {
+                AppBarMenuItem(1, "More Internet Tools", () {
+                  onMoreInternetToolsClicked();
+                }),
+                AppBarMenuItem(2, "More cool apps", () {
+                  onMoreCoolAppsClicked();
+                }),
+                AppBarMenuItem(3, "Rate this App", () {
+                  onRateThisAppClicked();
+                }),
+                AppBarMenuItem(4, "3P Cups", () {
+                  on3pCupsClicked();
+                }),
+              }.map((AppBarMenuItem choice) {
+                return PopupMenuItem<AppBarMenuItem>(
+                  value: choice,
+                  child: Text(choice.text),
+                );
+              }).toList();
+            },
+          ),
         ],
       ),
       body: Center(
@@ -144,5 +171,35 @@ class _MyHomePageState extends State<MyHomePage> {
         },
       ),
     )..load();
+  }
+
+  onMenuItemClicked(AppBarMenuItem value) {
+    print("Clicked on ${value.text}");
+    value.onClick();
+  }
+
+  onMoreInternetToolsClicked() {
+    print("onMoreInternetToolsClicked");
+    _launchUrl("https://play.google.com/store/search?q=pub%3A%203P%20Cups&c=apps");
+  }
+
+  onMoreCoolAppsClicked() {
+    print("onMoreCoolAppsClicked");
+    _launchUrl("https://play.google.com/store/apps/dev?id=8456795065374888880");
+  }
+
+  onRateThisAppClicked() {
+    print("onRateThisAppClicked");
+    _launchUrl("https://play.google.com/store/apps/details?id=com.triPCups.tools.whatsMyIp");
+  }
+
+  on3pCupsClicked() {
+    print("on3pCupsClicked");
+    _launchUrl("https://3p-cups.blogspot.com/");
+  }
+
+  _launchUrl(String url) async {
+    var uri = Uri.parse(url);
+    launchUrl(uri);
   }
 }
